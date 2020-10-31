@@ -1,0 +1,1 @@
+# base-ddd-web-core
