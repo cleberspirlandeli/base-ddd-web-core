@@ -7,7 +7,9 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Interface.Configurations
@@ -44,6 +46,10 @@ namespace Interface.Configurations
                         new string[] {}
                     }
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             return services;
@@ -84,10 +90,10 @@ namespace Interface.Configurations
         {
             var info = new OpenApiInfo()
             {
-                Title = "API - Teste Com Versionamento",
+                Title = "API - DDD com Versionamento",
                 Version = description.ApiVersion.ToString(),
-                Description = "Esta API faz parte do curso REST com ASP.NET Core WebAPI.",
-                Contact = new OpenApiContact() { Name = "Cleber Rezende", Email = "contato.spirlandeli@gmail.com", Url = new Uri("https://github.com/cleberspirlandeli/versionamento-api") },
+                Description = "Esta API é baseada no DDD e utiliza versionamento de Endpoints.",
+                Contact = new OpenApiContact() { Name = "Cleber Rezende", Email = "contato.spirlandeli@gmail.com", Url = new Uri("https://github.com/cleberspirlandeli/base-ddd-web-core") },
                 License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
             };
 

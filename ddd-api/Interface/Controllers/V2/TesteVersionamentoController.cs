@@ -6,7 +6,6 @@ using System;
 
 namespace Interface.Controllers.V2
 {
-    [Obsolete()]
     [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [AllowAnonymous]
@@ -18,14 +17,9 @@ namespace Interface.Controllers.V2
         }
 
         /// <summary>
-        /// Adiciona um Usuário na base de dados
+        /// Teste Documentação Swagger.
         /// </summary>
-        /// <remarks>
-        /// TipoUsuario (Possíveis entradas) 
-        ///
-        ///     1 - Pessoa Física
-        ///     2 - Pessoa Jurídica
-        /// </remarks> 
+        /// <param name="id">Id is id</param>  
         [HttpGet]
         public ActionResult ReturnString()
         {

@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Interface.Configurations
 {
@@ -48,8 +46,9 @@ namespace Interface.Configurations
                         .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .WithOrigins("https://meusistema.com.br", "https://meuoutrosistema.com.br")
                         .AllowAnyHeader());
-
             });
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             services.AddSwaggerConfig();
 
