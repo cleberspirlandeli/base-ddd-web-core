@@ -1,6 +1,7 @@
 ﻿using Interface.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -50,10 +51,13 @@ namespace Interface.Configurations
 
             });
 
+            services.AddSwaggerConfig();
+
+
             return services;
         }
 
-        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app)
+        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             app.UseHttpsRedirection();
 
@@ -65,6 +69,8 @@ namespace Interface.Configurations
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwaggerConfig(provider);
 
             app.UseMiddleware<ExceptionMiddleware>();
 

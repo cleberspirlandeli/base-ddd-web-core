@@ -25,7 +25,7 @@ namespace Interface.Extensions
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
-
+         
         private async Task HandleExceptionAsync(HttpContext httpContext, Exception ex)
         {
             // TODO - Add Elmah.oi

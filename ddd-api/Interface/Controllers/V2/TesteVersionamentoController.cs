@@ -17,6 +17,15 @@ namespace Interface.Controllers.V2
         {
         }
 
+        /// <summary>
+        /// Adiciona um Usuário na base de dados
+        /// </summary>
+        /// <remarks>
+        /// TipoUsuario (Possíveis entradas) 
+        ///
+        ///     1 - Pessoa Física
+        ///     2 - Pessoa Jurídica
+        /// </remarks> 
         [HttpGet]
         public ActionResult ReturnString()
         {
