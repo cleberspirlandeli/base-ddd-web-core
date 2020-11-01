@@ -1,6 +1,9 @@
-﻿using Common.DTO.FuncionalidadeCliente;
+﻿using Common;
+using Common.DTO.FuncionalidadeCliente;
+using Interface.Controllers.Common;
 using Microsoft.AspNetCore.Mvc;
 using Service.ApplicationService;
+using Service.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,20 +13,27 @@ namespace Interface.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class ClienteController : BaseController
     {
         private readonly ClienteApplicationService _appService;
-        public ClienteController(ClienteApplicationService appService)
+        public ClienteController(INotificador notificador,
+            ClienteApplicationService appService) : base(notificador)
         {
             _appService = appService;
         }
 
-        // GET: api/<ClienteController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClienteDto>>> GetAll()
         {
             var result = await _appService.GetAll();
-            return Ok(result);
+            return CustomResponse(result);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<IEnumerable<ClienteDto>>> GetAllWithError(int id)
+        {
+            var result = await _appService.GetAllWithError();
+            return CustomResponse(result);
         }
 
     }

@@ -1,18 +1,18 @@
 ﻿using Common.DTO.FuncionalidadeCliente;
 using Infrastructure.UnitOfWork.FuncionalidadeCliente;
-using System;
+using Service.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.ApplicationService
 {
-    public class ClienteApplicationService
+    public class ClienteApplicationService : BaseService
     {
         private readonly ClienteUnitOfWork _uow;
 
-        public ClienteApplicationService(ClienteUnitOfWork uow)
+        public ClienteApplicationService(ClienteUnitOfWork uow,
+                                         INotificador notificador) : base(notificador)
         {
             _uow = uow;
         }
@@ -31,6 +31,25 @@ namespace Service.ApplicationService
 
             return dto;
         }
+
+        public async Task<List<ClienteDto>> GetAllWithError()
+        {
+            Notificar("Gerar Um Erro Aleatorio para testar");
+
+            var query = _uow.ClienteRepository.GetAll();
+
+            var dto = query.Select(x => new ClienteDto
+            {
+                Id = x.Id,
+                Nome = x.Nome,
+                Cpf = x.Cpf,
+                DataNascimento = x.DataNascimento,
+                Ativo = x.Ativo
+            }).ToList();
+
+            return dto;
+        }
+
 
         //public ProdutoDto GetById(int id)
         //{

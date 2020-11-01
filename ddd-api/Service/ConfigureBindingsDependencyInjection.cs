@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Common;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service.DependencyInjection.ApplicationServiceBindings;
 using Service.DependencyInjection.RepositoryBindings;
 using Service.DependencyInjection.UnitOfWorkBindings;
+using Service.Interfaces;
+using Service.Notificacoes;
 
 namespace Service
 {
@@ -11,6 +14,9 @@ namespace Service
         public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
         {
             ConfigureBindingsDatabaseContext.RegisterBindings(services, configuration);
+
+            services.AddScoped<INotificador, Notificador>();
+
 
             #region ApplicationService
             ApplicationServiceInjection.RegisterBindings(services, configuration);
