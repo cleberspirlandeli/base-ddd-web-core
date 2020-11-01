@@ -30,7 +30,11 @@ namespace Interface.Extensions
         {
             // TODO - Add Elmah.oi
             //ex.Ship(httpContext);
+
+            // Alguma outra regra de Negocio
+            
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
         }
     }
 }
