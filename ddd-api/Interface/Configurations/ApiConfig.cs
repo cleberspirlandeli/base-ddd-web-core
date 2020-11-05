@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -52,11 +53,13 @@ namespace Interface.Configurations
 
             services.AddSwaggerConfig();
 
+            services.AddLoggingConfig();
+
 
             return services;
         }
 
-        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, IConfiguration configuration)
         {
             app.UseHttpsRedirection();
 
@@ -72,6 +75,8 @@ namespace Interface.Configurations
             app.UseSwaggerConfig(provider);
 
             app.UseMiddleware<ExceptionMiddleware>();
+
+            app.UseLoggingConfiguration(configuration);
 
             return app;
         }

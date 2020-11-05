@@ -46,7 +46,7 @@ namespace Interface
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvcConfiguration(provider);
+            app.UseMvcConfiguration(provider, Configuration);
 
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Interface.Controllers.Common;
+using KissLog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
@@ -12,7 +13,7 @@ namespace Interface.Controllers.V2
     [ApiController]
     public class TesteVersionamentoController : BaseController
     {
-        public TesteVersionamentoController(INotificador notificador) : base(notificador)
+        public TesteVersionamentoController(INotificador notificador, ILogger logger) : base(notificador, logger)
         {
         }
 
@@ -23,6 +24,8 @@ namespace Interface.Controllers.V2
         [HttpGet]
         public ActionResult ReturnString()
         {
+            throw new Exception("Teste Error");
+
             return CustomResponse("Eu sou a V2");
         }
     }

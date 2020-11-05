@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KissLog;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Service.Interfaces;
 using Service.Notificacoes;
@@ -10,17 +11,22 @@ namespace Interface.Controllers.Common
     [ApiController]
     public abstract class BaseController : ControllerBase
     {
+        private readonly ILogger _logger;
         private readonly INotificador _notificador;
         //public readonly IUser _appUser;
 
         protected Guid UsuarioId { get; }
         protected bool UsuarioAutenticado { get; }
+        protected ILogger _loggerBase { get; }
 
-        protected BaseController(INotificador notificador
-                                 //IUser appUser
+        protected BaseController(INotificador notificador,
+            ILogger logger
+            //IUser appUser
             )
         {
+            _logger = logger;
             _notificador = notificador;
+
             //_appUser = appUser;
 
             //if (appUser.IsAuthenticated())
@@ -28,6 +34,8 @@ namespace Interface.Controllers.Common
             //    UsuarioId = appUser.GetUserId();
             //    UsuarioAutenticado = true;
             //}
+
+            _loggerBase = _logger;
         }
 
         // Validação de notificações de erro

@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.DTO.FuncionalidadeCliente;
 using Interface.Controllers.Common;
+using KissLog;
 using Microsoft.AspNetCore.Mvc;
 using Service.ApplicationService;
 using Service.Interfaces;
@@ -18,7 +19,8 @@ namespace Interface.Controllers.V1
     {
         private readonly ClienteApplicationService _appService;
         public ClienteController(INotificador notificador,
-            ClienteApplicationService appService) : base(notificador)
+            ILogger logger,
+            ClienteApplicationService appService) : base(notificador, logger)
         {
             _appService = appService;
         }

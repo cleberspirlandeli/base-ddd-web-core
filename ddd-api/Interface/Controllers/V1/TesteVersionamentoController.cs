@@ -1,4 +1,5 @@
 ﻿using Interface.Controllers.Common;
+using KissLog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
@@ -13,7 +14,7 @@ namespace Interface.Controllers.V1
     [ApiController]
     public class TesteVersionamentoController : BaseController
     {
-        public TesteVersionamentoController(INotificador notificador) : base(notificador)
+        public TesteVersionamentoController(INotificador notificador, ILogger logger) : base(notificador, logger)
         {
         }
 
@@ -30,6 +31,7 @@ namespace Interface.Controllers.V1
         [HttpGet]
         public ActionResult ReturnString()
         {
+            _loggerBase.Debug("Hello world from .NET Core 3.x!");
             return CustomResponse("Eu sou a V1") ;
         }
     }
