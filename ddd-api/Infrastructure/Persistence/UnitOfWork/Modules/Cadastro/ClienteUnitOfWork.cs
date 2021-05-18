@@ -1,10 +1,10 @@
-﻿using System;
-using Infrastructure.Model;
+﻿using Infrastructure.Model;
+using Infrastructure.Repository.Modules.Cadastro;
 using Infrastructure.UnitOfWork.Base;
 using Microsoft.Extensions.DependencyInjection;
-using Infrastructure.Repository.FuncionalidadeCliente;
+using System;
 
-namespace Infrastructure.UnitOfWork.FuncionalidadeCliente
+namespace Infrastructure.UnitOfWork.Modules.Cadastro
 {
     public class ClienteUnitOfWork : GenericUnitOfWork
     {

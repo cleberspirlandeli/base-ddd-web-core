@@ -1,9 +1,8 @@
-﻿using Common;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Service.DependencyInjection.ApplicationServiceBindings;
-using Service.DependencyInjection.RepositoryBindings;
-using Service.DependencyInjection.UnitOfWorkBindings;
+using Service.DependencyInjection.ApplicationServiceInjection;
+using Service.DependencyInjection.RepositoryInjection;
+using Service.DependencyInjection.UnitOfWorkInjection;
 using Service.Interfaces;
 using Service.Notificacoes;
 
@@ -15,23 +14,34 @@ namespace Service
         {
             ConfigureBindingsDatabaseContext.RegisterBindings(services, configuration);
 
+            #region Others
             services.AddScoped<INotificador, Notificador>();
+            #endregion
+
 
 
             #region ApplicationService
-            ApplicationServiceInjection.RegisterBindings(services, configuration);
+            ConfigureBindingsCadastroApplicationService.RegisterBindings(services, configuration);
+            //ConfigureBindingsEstoqueApplicationService.RegisterBindings(services, configuration);
             #endregion
 
 
 
             #region Repository
-            RepositoryInjection.RegisterBindings(services, configuration);
+            ConfigureBindingsCadastroRepository.RegisterBindings(services, configuration);
+            //ConfigureBindingsEstoqueRepository.RegisterBindings(services, configuration);
             #endregion
 
 
 
             #region UnitOfWork
-            UnitOfWorkInjection.RegisterBindings(services, configuration);
+            ConfigureBindingsCadastroUnitOfWork.RegisterBindings(services, configuration);
+            //ConfigureBindingsEstoqueUnitOfWork.RegisterBindings(services, configuration);
+            #endregion
+
+
+
+            #region ServiceBus
             #endregion
         }
     }

@@ -1,13 +1,10 @@
-﻿using Infrastructure.UnitOfWork.FuncionalidadeCliente;
+﻿using Infrastructure.UnitOfWork.Modules.Cadastro;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Service.DependencyInjection.UnitOfWorkBindings
+namespace Service.DependencyInjection.UnitOfWorkInjection
 {
-    public class UnitOfWorkInjection
+    public class ConfigureBindingsCadastroUnitOfWork
     {
         public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
         {

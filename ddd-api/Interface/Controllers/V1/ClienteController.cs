@@ -1,9 +1,8 @@
-﻿using Common;
-using Common.DTO.FuncionalidadeCliente;
+﻿using Common.DTO.Cadastro;
 using Interface.Controllers.Common;
 using KissLog;
 using Microsoft.AspNetCore.Mvc;
-using Service.ApplicationService;
+using Service.ApplicationService.Modules.Cadastro;
 using Service.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;

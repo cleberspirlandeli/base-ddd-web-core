@@ -1,19 +1,24 @@
-﻿using Domain.Models.FuncionalidadeCliente;
+﻿using Domain.Modules.Cadastro;
+using Infrastructure.Persistence.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Model
 {
-    public class DefaultDataBaseContext : DbContext
+    public partial class DefaultDataBaseContext : GenericContext
     {
-        public DefaultDataBaseContext(DbContextOptions<DefaultDataBaseContext> options) : base(options)
-        {
-        }
 
-        public virtual DbSet<Cliente> Cliente { get; set; }
+        //protected override void OnConfiguring(DbContextOptions options)
+        //{
+        //    base.OnConfiguring(options);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        }
+
+        public DefaultDataBaseContext(DbContextOptions<DefaultDataBaseContext> options) : base(options)
+        {
         }
     }
 }

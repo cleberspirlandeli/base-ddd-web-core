@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.DTO.FuncionalidadeCliente
+namespace Common.DTO.Cadastro
 {
     public class ClienteDto
     {

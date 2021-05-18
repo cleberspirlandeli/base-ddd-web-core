@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
-namespace Domain.Models.FuncionalidadeCliente
+namespace Domain.Modules.Cadastro
 {
     [Table("Cliente")]
     public class Cliente
