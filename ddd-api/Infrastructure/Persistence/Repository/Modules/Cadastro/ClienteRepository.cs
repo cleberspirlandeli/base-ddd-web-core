@@ -1,5 +1,5 @@
 ﻿using Domain.Modules.Cadastro;
-using Infrastructure.Model;
+using Infrastructure.Persistence.Model;
 using Infrastructure.Repository.Base;
 using System.Linq;
 

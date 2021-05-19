@@ -2,7 +2,7 @@
 using Infrastructure.Persistence.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Model
+namespace Infrastructure.Persistence.Model
 {
     public partial class DefaultDataBaseContext : GenericContext
     {

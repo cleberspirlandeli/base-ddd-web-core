@@ -1,4 +1,4 @@
-﻿using Infrastructure.Model;
+﻿using Infrastructure.Persistence.Model;
 using System;
 
 namespace Infrastructure.UnitOfWork.Base

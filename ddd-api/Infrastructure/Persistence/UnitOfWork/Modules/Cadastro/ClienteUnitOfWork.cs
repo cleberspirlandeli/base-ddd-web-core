@@ -1,4 +1,4 @@
-﻿using Infrastructure.Model;
+﻿using Infrastructure.Persistence.Model;
 using Infrastructure.Repository.Modules.Cadastro;
 using Infrastructure.UnitOfWork.Base;
 using Microsoft.Extensions.DependencyInjection;
