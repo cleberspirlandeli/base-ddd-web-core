@@ -1,9 +1,9 @@
-﻿using Domain.Models.FuncionalidadeCliente;
+﻿using Domain.Modules.Cadastro;
 using Infrastructure.Model;
 using Infrastructure.Repository.Base;
 using System.Linq;
 
-namespace Infrastructure.Repository.FuncionalidadeCliente
+namespace Infrastructure.Repository.Modules.Cadastro
 {
     public class ClienteRepository : GenericRepository<Cliente, DefaultDataBaseContext>
     {

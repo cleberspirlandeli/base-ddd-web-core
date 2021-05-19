@@ -6,12 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{E5220B7C-A639-445D-8E95-749B819CE951}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{00D01DBB-0939-4602-98C5-E16AAFD6B08A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A43D930-3592-485B-A67F-31D6BE4DF13A} = {4A43D930-3592-485B-A67F-31D6BE4DF13A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{72D41512-127F-4F1A-91A2-A0FCC9E4C562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{ED4BEE32-1CFA-4EC2-9EA9-55D93914511A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface", "Interface\Interface.csproj", "{ED4BEE32-1CFA-4EC2-9EA9-55D93914511A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{4A43D930-3592-485B-A67F-31D6BE4DF13A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{4A43D930-3592-485B-A67F-31D6BE4DF13A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

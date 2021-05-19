@@ -1,10 +1,10 @@
-﻿using Infrastructure.Repository.FuncionalidadeCliente;
+﻿using Infrastructure.Repository.Modules.Cadastro;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.DependencyInjection.RepositoryBindings
+namespace Service.DependencyInjection.RepositoryInjection
 {
-    public class RepositoryInjection
+    public class ConfigureBindingsCadastroRepository
     {
         public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
         {

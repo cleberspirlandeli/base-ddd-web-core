@@ -1,4 +1,4 @@
-﻿using Infrastructure.Model;
+﻿using Infrastructure.Persistence.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,11 +9,17 @@ namespace Service
     {
         public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
         {
+            //services
+            //    .AddEntityFrameworkSqlServer()
+            //    .AddDbContext<DefaultDataBaseContext>(
+            //            options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString"),
+            //            providerOptions => providerOptions.EnableRetryOnFailure())
+            //    );
+
             services
-                .AddEntityFrameworkSqlServer()
-                .AddDbContext<DefaultDataBaseContext>(
-                        options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString"),
-                        providerOptions => providerOptions.EnableRetryOnFailure())
+              .AddDbContextPool<DefaultDataBaseContext>(
+                            options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString"),
+                            providerOptions => providerOptions.EnableRetryOnFailure())
                 );
         }
     }

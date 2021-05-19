@@ -1,11 +1,11 @@
-﻿using Common.DTO.FuncionalidadeCliente;
-using Infrastructure.UnitOfWork.FuncionalidadeCliente;
+﻿using Common.DTO.Cadastro;
+using Infrastructure.UnitOfWork.Modules.Cadastro;
 using Service.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Service.ApplicationService
+namespace Service.ApplicationService.Modules.Cadastro
 {
     public class ClienteApplicationService : BaseService
     {

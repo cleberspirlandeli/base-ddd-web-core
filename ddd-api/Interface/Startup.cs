@@ -1,6 +1,5 @@
 using Infrastructure.Model;
 using Interface.Configurations;
-using Interface.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -9,9 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Service;
-using System;
-using System.IO;
-using System.Reflection;
 
 namespace Interface
 {
@@ -27,10 +23,10 @@ namespace Interface
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DefaultDataBaseContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            //services.AddDbContext<DefaultDataBaseContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            //});
 
             services.WebApiConfig();
 
@@ -38,7 +34,7 @@ namespace Interface
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider, DefaultDataBaseContext dbContext)
         {
 
             if (env.IsDevelopment())
