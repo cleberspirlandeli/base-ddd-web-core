@@ -17,7 +17,7 @@ namespace Infrastructure.Persistence.Model
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
 
-        public DefaultDataBaseContext(DbContextOptions<DefaultDataBaseContext> options) : base(options)
+        public DefaultDataBaseContext(DbContextOptions options) : base(options)
         {
         }
     }

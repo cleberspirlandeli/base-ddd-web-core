@@ -7,9 +7,7 @@ namespace Infrastructure.Repository.Modules.Cadastro
 {
     public class ClienteRepository : GenericRepository<Cliente, DefaultDataBaseContext>
     {
-        public ClienteRepository(DefaultDataBaseContext context) : base(context)
-        {
-        }
+        public ClienteRepository(DefaultDataBaseContext context) : base(context) { }
 
         public IQueryable<Cliente> GetById(int id)
         {
