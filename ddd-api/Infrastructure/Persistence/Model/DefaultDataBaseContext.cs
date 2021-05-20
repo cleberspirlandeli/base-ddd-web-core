@@ -2,7 +2,7 @@
 using Infrastructure.Persistence.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Model
+namespace Infrastructure.Persistence.Model
 {
     public partial class DefaultDataBaseContext : GenericContext
     {
@@ -17,7 +17,7 @@ namespace Infrastructure.Model
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
 
-        public DefaultDataBaseContext(DbContextOptions<DefaultDataBaseContext> options) : base(options)
+        public DefaultDataBaseContext(DbContextOptions options) : base(options)
         {
         }
     }

@@ -17,10 +17,11 @@ namespace Service
             //    );
 
             services
-              .AddDbContextPool<DefaultDataBaseContext>(
-                            options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString"),
-                            providerOptions => providerOptions.EnableRetryOnFailure())
-                );
+              .AddDbContextPool<DefaultDataBaseContext>(options =>
+              {
+                  options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                          providerOptions => providerOptions.EnableRetryOnFailure());
+              });
         }
     }
 }

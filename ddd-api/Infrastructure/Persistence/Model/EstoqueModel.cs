@@ -5,6 +5,6 @@ namespace Infrastructure.Persistence.Model
 {
     public partial class DefaultDataBaseContext : GenericContext
     {
-        public DbSet<Produto> Produto;
+        public virtual DbSet<Produto> Produto { get; set; }
     }
 }

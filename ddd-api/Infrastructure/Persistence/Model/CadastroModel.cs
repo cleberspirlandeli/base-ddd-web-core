@@ -5,6 +5,6 @@ namespace Infrastructure.Persistence.Model
 {
     public partial class DefaultDataBaseContext : GenericContext
     {
-        public DbSet<Cliente> Cliente;
+        public virtual DbSet<Cliente> Cliente { get; set; }
     }
 }
