@@ -93,5 +93,10 @@ namespace Infrastructure.Repository.Base
             _dbSet.RemoveRange(entities);
         }
         #endregion
+
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
     }
 }

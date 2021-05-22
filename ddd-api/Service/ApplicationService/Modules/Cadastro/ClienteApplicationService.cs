@@ -1,4 +1,5 @@
 ﻿using Common.DTO.Cadastro;
+using CrossCutting.FluentValidations.Cadastro;
 using Domain.Modules.Cadastro;
 using Infrastructure.UnitOfWork.Modules.Cadastro;
 using Service.Interfaces;
@@ -56,6 +57,8 @@ namespace Service.ApplicationService.Modules.Cadastro
             VerifyExists(dto, _verifyMessage);
 
             var cliente = await Create(dto);
+
+            if (!ExecutarValidacao(new ClienteValidation(), cliente)) return;
 
             Validate(cliente);
 
