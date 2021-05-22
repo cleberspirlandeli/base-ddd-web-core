@@ -9,9 +9,7 @@ namespace Infrastructure.Repository.Modules.Cadastro
     {
         public ClienteRepository(DefaultDataBaseContext context) : base(context) { }
 
-        public IQueryable<Cliente> GetById(int id)
-        {
-            return _context.Cliente.Where(x => x.Id == id);
-        }
+        public IQueryable<Cliente> GetById(int id) => _context.Cliente.Where(x => x.Id == id);
+
     }
 }

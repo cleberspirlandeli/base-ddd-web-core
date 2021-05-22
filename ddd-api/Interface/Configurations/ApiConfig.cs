@@ -74,8 +74,6 @@ namespace Interface.Configurations
 
             app.UseSwaggerConfig(provider);
 
-            app.UseMiddleware<ExceptionMiddleware>();
-
             app.UseLoggingConfiguration(configuration);
 
             return app;

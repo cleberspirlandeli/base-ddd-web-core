@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Persistence.Model;
 using System;
+using System.Threading.Tasks;
 
 namespace Infrastructure.UnitOfWork.Base
 {
@@ -17,6 +18,11 @@ namespace Infrastructure.UnitOfWork.Base
         public void Commit()
         {
             _context.SaveChanges();
+        }
+
+        public virtual async Task CommitAsync()
+        {
+            _context.SaveChangesAsync();
         }
     }
 }

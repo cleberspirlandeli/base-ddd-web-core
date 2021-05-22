@@ -4,6 +4,7 @@ using KissLog;
 using Microsoft.AspNetCore.Mvc;
 using Service.ApplicationService.Modules.Cadastro;
 using Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,19 +25,86 @@ namespace Interface.Controllers.V1
             _appService = appService;
         }
 
+        /// <summary>
+        /// Obter todos os Clientes
+        /// </summary>
+        /// <returns>Lista de ClienteDto</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClienteDto>>> GetAll()
         {
+            throw new Exception();
+
             var result = await _appService.GetAll();
             return CustomResponse(result);
         }
 
+        /// <summary>
+        /// Obter Cliente por identificador
+        /// </summary>
+        /// <param name="id">Identificador</param>
+        /// <returns>Um ClienteDto</returns>
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<IEnumerable<ClienteDto>>> GetAllWithError(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = await _appService.GetAllWithError();
+            var result = await _appService.GetById(id);
             return CustomResponse(result);
         }
+
+        /// <summary>
+        /// Inserir um novo Cliente
+        /// </summary>
+        /// <param name="Nome">Nome</param>
+        /// <param name="Cpf">Cpf</param>
+        /// <param name="DataNascimento"></param>
+        /// <param name="Ativo"></param>
+        /// <returns>ClienteDto</returns>
+        [HttpPost]
+        public async Task<IActionResult> Insert(ClienteDto dto)
+        {
+            await _appService.Insert(dto);
+            return CustomResponse();
+        }
+
+        /// <summary>
+        /// Alterar um Cliente já existente
+        /// </summary>
+        /// <param name="Nome">Nome</param>
+        /// <param name="Cpf">Cpf</param>
+        /// <param name="DataNascimento"></param>
+        /// <param name="Ativo"></param>
+        /// <returns>200</returns>
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, ClienteDto dto)
+        {
+            await _appService.Update(id, dto);
+            return CustomResponse();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _appService.Delete(id);
+            return CustomResponse();
+        }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //[HttpGet("{id:int}")]
+        //public async Task<ActionResult<IEnumerable<ClienteDto>>> GetAllWithError(int id)
+        //{
+        //    var result = await _appService.GetAllWithError();
+        //    return CustomResponse(result);
+        //}
+
+
 
     }
 }

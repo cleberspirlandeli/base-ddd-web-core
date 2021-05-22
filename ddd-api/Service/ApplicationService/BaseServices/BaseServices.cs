@@ -3,6 +3,8 @@ using FluentValidation;
 using FluentValidation.Results;
 using Service.Interfaces;
 using Service.Notificacoes;
+using System;
+using System.Linq;
 
 namespace Service.ApplicationService
 {
@@ -28,6 +30,11 @@ namespace Service.ApplicationService
             _notificador.Handle(new Notificacao(mensagem));
         }
 
+        protected bool OperacaoValida()
+        {
+            return !_notificador.TemNotificacao();
+        }
+
         protected bool ExecutarValidacao<TV, TE>(TV validacao, TE entidade) where TV : AbstractValidator<TE> where TE : Entity
         {
             var validator = validacao.Validate(entidade);
@@ -37,6 +44,12 @@ namespace Service.ApplicationService
             Notificar(validator);
 
             return false;
+        }
+
+        protected void VerifyExists(object objectVerify, string customMessage = "")
+        {
+            if (objectVerify == null && !String.IsNullOrEmpty(customMessage))
+                throw new Exception(customMessage);
         }
     }
 }

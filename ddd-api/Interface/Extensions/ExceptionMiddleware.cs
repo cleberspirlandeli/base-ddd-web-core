@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -32,8 +33,15 @@ namespace Interface.Extensions
             //ex.Ship(httpContext);
 
             // Alguma outra regra de Negocio
+            // Inserir erro no banco
             
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            var message = "Ops, ocorreu um erro inesperado. Tente novamente mais tarde! Erro ${Erro.Id}";
+
+            var result = JsonConvert.SerializeObject(new { success = false, errors = message });
+            httpContext.Response.ContentType = "application/json";
+            await httpContext.Response.WriteAsync(result);
 
         }
     }

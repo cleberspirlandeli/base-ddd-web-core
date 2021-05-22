@@ -1,4 +1,5 @@
 using Interface.Configurations;
+using Interface.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -39,6 +40,8 @@ namespace Interface
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseMvcConfiguration(provider, Configuration);
 

@@ -32,9 +32,18 @@ namespace Infrastructure.Repository.Base
         #endregion
 
         #region GetById
-        public virtual async Task<TEntity> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
-
-        public virtual async Task<TEntity> GetByIdAsync(long id) => await _dbSet.FindAsync(id);
+        public virtual TEntity GetById(int id)
+        {
+            return _dbSet.Find(id);
+        }
+        public virtual async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+        public virtual async Task<TEntity> GetByIdAsync(long id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
         #endregion
 
         #region Add
