@@ -10,13 +10,13 @@ Objetivo:
 - Documentação da API utilizando `Swagger`
 - Utilizar AutoMapper
 - Validação de regras de negocio com FluentValidation
-- TODO - ~~Registro de Erros e Logis utilizando `Prometheus` e `Grafana`~~
-- TODO - ~~Autenticação com `JWT`~~
-- TODO - ~~Implementar `ASP.NET Identity` com permissões de acesso com `Claims` e `Roles`~~
-- TODO - ~~Subir aplicação no `IIS local` e no `Azure`~~
-- TODO - ~~Implementar Testes automatizados~~
-- TODO - ~~Implementar Ambiente Docker~~
-- TODO - ~~Conversão de 3.1 para 5.x~~
+- TODO - Registro de Erros e Logis utilizando `Prometheus` e `Grafana`
+- TODO - Autenticação com `JWT`
+- TODO - Implementar `ASP.NET Identity` com permissões de acesso com `Claims` e `Roles`
+- TODO - Subir aplicação no `IIS local` e no `Azure`
+- TODO - Implementar Testes automatizados
+- TODO - Implementar Ambiente Docker
+- TODO - Conversão de 3.1 para 5.x
 
 <br/>
 <br/>
