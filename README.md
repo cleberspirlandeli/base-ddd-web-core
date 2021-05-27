@@ -10,7 +10,8 @@ Objetivo:
 - Documentação da API utilizando `Swagger`
 - Utilizar AutoMapper
 - Validação de regras de negocio com FluentValidation
-- TODO - Monitoramento da API utilizando `Prometheus` e `Grafana`
+- Captação de informações para monitoramento da API utilizando `Prometheus`
+- TODO - Apresentação das informações de monitoramento em gráficos com `Grafana`
 - TODO - Autenticação com `JWT`
 - TODO - Implementar `ASP.NET Identity` com permissões de acesso com `Claims` e `Roles`
 - TODO - Subir aplicação no `IIS local` e no `Azure`
