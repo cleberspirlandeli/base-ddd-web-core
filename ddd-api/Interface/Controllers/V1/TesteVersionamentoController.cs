@@ -14,7 +14,7 @@ namespace Interface.Controllers.V1
     [ApiController]
     public class TesteVersionamentoController : BaseController
     {
-        public TesteVersionamentoController(INotificador notificador, ILogger logger) : base(notificador, logger)
+        public TesteVersionamentoController(INotificador notificador) : base(notificador)
         {
         }
 

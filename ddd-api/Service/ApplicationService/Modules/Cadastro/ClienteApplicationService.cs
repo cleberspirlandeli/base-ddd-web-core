@@ -1,4 +1,5 @@
-﻿using Common.DTO.Cadastro;
+﻿using AutoMapper;
+using Common.DTO.Cadastro;
 using CrossCutting.FluentValidations.Cadastro;
 using Domain.Modules.Cadastro;
 using Infrastructure.UnitOfWork.Modules.Cadastro;
@@ -14,11 +15,14 @@ namespace Service.ApplicationService.Modules.Cadastro
     {
         private readonly ClienteUnitOfWork _uow;
         private const string _verifyMessage = "Informações de entrada de Cliente";
+        private readonly IMapper _mapper;
 
         public ClienteApplicationService(ClienteUnitOfWork uow,
+                                         IMapper mapper,
                                          INotificador notificador) : base(notificador)
         {
             _uow = uow;
+            _mapper = mapper;
         }
 
         public async Task<List<ClienteDto>> GetAll()
@@ -39,17 +43,20 @@ namespace Service.ApplicationService.Modules.Cadastro
 
         public async Task<ClienteDto> GetById(int id)
         {
-            var query = _uow.ClienteRepository.GetById(id);
-            
-            var dto = query.Select(x => new ClienteDto
-            {
-                Id = x.Id,
-                Nome = x.Nome,
-                Cpf = x.Cpf,
-                DataNascimento = x.DataNascimento
-            }).FirstOrDefault();
 
-            return dto;
+            //var query = _uow.ClienteRepository.GetById(id);
+            //var dto = query.Select(x => new ClienteDto
+            //{
+            //    Id = x.Id,
+            //    Nome = x.Nome,
+            //    Cpf = x.Cpf,
+            //    DataNascimento = x.DataNascimento
+            //}).FirstOrDefault();
+            //return dto;
+
+            var cliente = _uow.ClienteRepository.GetById(id).FirstOrDefault();
+            var clienteDto = _mapper.Map<ClienteDto>(cliente);
+            return clienteDto;
         }
 
         public async Task Insert(ClienteDto dto)

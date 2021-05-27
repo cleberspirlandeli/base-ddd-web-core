@@ -19,8 +19,7 @@ namespace Interface.Controllers.V1
     {
         private readonly ClienteApplicationService _appService;
         public ClienteController(INotificador notificador,
-            ILogger logger,
-            ClienteApplicationService appService) : base(notificador, logger)
+            ClienteApplicationService appService) : base(notificador)
         {
             _appService = appService;
         }
@@ -32,8 +31,6 @@ namespace Interface.Controllers.V1
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClienteDto>>> GetAll()
         {
-            throw new Exception();
-
             var result = await _appService.GetAll();
             return CustomResponse(result);
         }

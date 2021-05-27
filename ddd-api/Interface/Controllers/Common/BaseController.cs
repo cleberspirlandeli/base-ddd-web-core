@@ -19,12 +19,12 @@ namespace Interface.Controllers.Common
         protected bool UsuarioAutenticado { get; }
         protected ILogger _loggerBase { get; }
 
-        protected BaseController(INotificador notificador,
-            ILogger logger
+        protected BaseController(INotificador notificador
+            //ILogger logger
             //IUser appUser
             )
         {
-            _logger = logger;
+            //_logger = logger;
             _notificador = notificador;
 
             //_appUser = appUser;

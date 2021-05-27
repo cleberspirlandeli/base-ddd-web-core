@@ -1,5 +1,4 @@
-﻿using Interface.Extensions;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +12,8 @@ namespace Interface.Configurations
     {
         public static IServiceCollection WebApiConfig(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddApiVersioning(options =>
@@ -40,20 +41,28 @@ namespace Interface.Configurations
                     builder => builder
                         .AllowAnyMethod()
                         .AllowAnyOrigin()
+                        .AllowAnyHeader()
                         .AllowAnyHeader());
 
                 options.AddPolicy("Production",
                     builder => builder
-                        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .WithOrigins("https://meusistema.com.br", "https://meuoutrosistema.com.br")
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
                         .AllowAnyHeader());
+
+                //options.AddPolicy("Production",
+                //    builder => builder
+                //        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                //        .WithOrigins("https://meusistema.com.br", "https://meuoutrosistema.com.br")
+                //        .AllowAnyHeader());
             });
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             services.AddSwaggerConfig();
 
-            services.AddLoggingConfig();
+            //services.AddLoggingConfig();
 
 
             return services;
@@ -67,6 +76,8 @@ namespace Interface.Configurations
 
             app.UseAuthorization();
 
+            app.UseCors();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -74,7 +85,7 @@ namespace Interface.Configurations
 
             app.UseSwaggerConfig(provider);
 
-            app.UseLoggingConfiguration(configuration);
+            //app.UseLoggingConfiguration(configuration);
 
             return app;
         }
