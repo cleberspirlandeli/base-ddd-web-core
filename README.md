@@ -18,6 +18,8 @@ Objetivo:
 - TODO - Implementar Testes automatizados
 - TODO - Implementar Ambiente Docker
 - TODO - Conversão de 3.1 para 5.x
+- TODO - Integração com outra API utilizando HTTP
+- TODO - Integração com outra API utilizando RabittMQ
 
 <br/>
 <br/>
