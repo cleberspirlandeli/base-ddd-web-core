@@ -67,11 +67,14 @@ Configurar conexão com o banco de dados no arquivo `appsettings.json`
 
 <br>
 
-Executar no terminal `Package Manager Console (PM)`:
+Executar no terminal `Package Manager Console (PM)` no projeto `Infrastructure`:
 <br>
 
 ```
-update-dabase --verbose
+update-dabase -Context DefaultDataBaseContext --verbose
+```
+```
+update-dabase -Context DefaultIdentityDbContext --verbose
 ```
 
 <br>
