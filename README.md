@@ -1,9 +1,19 @@
-# Base Backend - Estrutura DDD com versionamento de Endpoints
+# Base Backend - Estrutura elaborada para resolver problemas complexos utilizando o design DDD com versionamento de Endpoints
 
+
+# DDD 
+é uma abordagem de modelagem de software que segue um conjunto de práticas com objetivo de facilitar a implementação de complexas regras / processos de negócios que tratamos como domínio.
+<br>
+Domain Driven Design como o nome já diz é sobre design. Design guiado pelo domínio, ou seja, uma modelagem de software focada em resolver problemas na complexidade do negócio.
+<br>
+“Toda arquitetura é design, mas nem todo design é arquitetura” – Grady Booch
+<br>
+O DDD não é uma receita pronta sobre como desenvolver uma arquitetura baseada em Presentation, Services, Application, Domain e Infra.
+<br>
 <br/>
 
 Objetivo:
-- Criar uma estrutura base, separando responsabilidades com base na estrutura DDD.
+- Criar uma estrutura base, separando responsabilidades com base no design DDD.
 - Realizar versionamento de `endpoints`
 - Retorno padronizado e inclusive erros
 - Erros gerados serão incluidos em uma lista ao em vez de gerar um `New Error`
