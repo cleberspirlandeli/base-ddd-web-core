@@ -2,13 +2,15 @@
 
 
 ## DDD 
-é uma abordagem de modelagem de software que segue um conjunto de práticas com objetivo de facilitar a implementação de complexas regras / processos de negócios que tratamos como domínio.
+É uma abordagem de modelagem de software que segue um conjunto de práticas com objetivo de facilitar a implementação de complexas regras / processos de negócios que tratamos como domínio.
 <br>
 Domain Driven Design como o nome já diz é sobre design. Design guiado pelo domínio, ou seja, uma modelagem de software focada em resolver problemas na complexidade do negócio.
 <br>
 “Toda arquitetura é design, mas nem todo design é arquitetura” – Grady Booch
 <br>
 O DDD não é uma receita pronta sobre como desenvolver uma arquitetura baseada em Presentation, Services, Application, Domain e Infra.
+<br>
+Fonte: [`Eduardo Pires`](https://www.eduardopires.net.br/2016/08/ddd-nao-e-arquitetura-em-camadas/)
 <br>
 <br/>
 
