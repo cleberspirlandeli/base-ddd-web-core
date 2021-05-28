@@ -70,6 +70,8 @@ namespace Interface.Configurations
 
         public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, IConfiguration configuration)
         {
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
