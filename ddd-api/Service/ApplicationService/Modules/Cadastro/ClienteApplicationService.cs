@@ -1,4 +1,5 @@
-﻿using Common.DTO.Cadastro;
+﻿using AutoMapper;
+using Common.DTO.Cadastro;
 using CrossCutting.FluentValidations.Cadastro;
 using Domain.Modules.Cadastro;
 using Infrastructure.UnitOfWork.Modules.Cadastro;
@@ -14,11 +15,17 @@ namespace Service.ApplicationService.Modules.Cadastro
     {
         private readonly ClienteUnitOfWork _uow;
         private const string _verifyMessage = "Informações de entrada de Cliente";
+        private readonly IMapper _mapper;
+        private readonly IUser _appUser;
 
         public ClienteApplicationService(ClienteUnitOfWork uow,
-                                         INotificador notificador) : base(notificador)
+                                         IMapper mapper,
+                                         INotificador notificador,
+                                         IUser user) : base(notificador)
         {
             _uow = uow;
+            _mapper = mapper;
+            _appUser = user;
         }
 
         public async Task<List<ClienteDto>> GetAll()
@@ -34,27 +41,33 @@ namespace Service.ApplicationService.Modules.Cadastro
                 Ativo = x.Ativo
             }).ToList();
 
+            //var email = _appUser.GetUserEmail();
+
             return dto;
         }
 
         public async Task<ClienteDto> GetById(int id)
         {
-            var query = _uow.ClienteRepository.GetById(id);
-            
-            var dto = query.Select(x => new ClienteDto
+            if (_appUser.IsAuthenticated())
             {
-                Id = x.Id,
-                Nome = x.Nome,
-                Cpf = x.Cpf,
-                DataNascimento = x.DataNascimento
-            }).FirstOrDefault();
+                var userId = _appUser.GetUserId();
+                var email = _appUser.GetUserEmail();
+            }
 
-            return dto;
+            var cliente = _uow.ClienteRepository.GetById(id).FirstOrDefault();
+            var clienteDto = _mapper.Map<ClienteDto>(cliente);
+            return clienteDto;
         }
 
         public async Task Insert(ClienteDto dto)
         {
             VerifyExists(dto, _verifyMessage);
+
+            if (_appUser.IsAuthenticated())
+            {
+                var userId = _appUser.GetUserId();
+                var email = _appUser.GetUserEmail();
+            }
 
             var cliente = await Create(dto);
 

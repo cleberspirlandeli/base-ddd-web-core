@@ -13,18 +13,18 @@ namespace Interface.Controllers.Common
     {
         private readonly ILogger _logger;
         private readonly INotificador _notificador;
-        //public readonly IUser _appUser;
+        public readonly IUser _appUser;
 
         protected Guid UsuarioId { get; }
         protected bool UsuarioAutenticado { get; }
         protected ILogger _loggerBase { get; }
 
-        protected BaseController(INotificador notificador,
-            ILogger logger
+        protected BaseController(INotificador notificador
             //IUser appUser
+            //ILogger logger
             )
         {
-            _logger = logger;
+            //_logger = logger;
             _notificador = notificador;
 
             //_appUser = appUser;
@@ -35,7 +35,7 @@ namespace Interface.Controllers.Common
             //    UsuarioAutenticado = true;
             //}
 
-            _loggerBase = _logger;
+            //_loggerBase = _logger;
         }
 
         // Validação de notificações de erro

@@ -92,7 +92,7 @@ namespace Interface.Configurations
             {
                 Title = "API - DDD com Versionamento",
                 Version = description.ApiVersion.ToString(),
-                Description = "Esta API é baseada no DDD e utiliza versionamento de Endpoints.",
+                Description = "API baseada no design DDD e utiliza versionamento de Endpoints.",
                 Contact = new OpenApiContact() { Name = "Cleber Rezende", Email = "contato.spirlandeli@gmail.com", Url = new Uri("https://github.com/cleberspirlandeli/base-ddd-web-core") },
                 License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
             };

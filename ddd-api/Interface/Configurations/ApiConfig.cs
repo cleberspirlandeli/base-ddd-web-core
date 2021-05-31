@@ -1,5 +1,4 @@
-﻿using Interface.Extensions;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
@@ -11,8 +10,11 @@ namespace Interface.Configurations
 {
     public static class ApiConfig
     {
-        public static IServiceCollection WebApiConfig(this IServiceCollection services)
+        public static IServiceCollection WebApiConfig(this IServiceCollection services,
+            IConfiguration configuration)
         {
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddApiVersioning(options =>
@@ -33,14 +35,21 @@ namespace Interface.Configurations
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-
             services.AddCors(options =>
             {
                 options.AddPolicy("Development",
                     builder => builder
                         .AllowAnyMethod()
                         .AllowAnyOrigin()
+                        .AllowAnyHeader()
                         .AllowAnyHeader());
+
+                //options.AddPolicy("Production",
+                //    builder => builder
+                //        .AllowAnyMethod()
+                //        .AllowAnyOrigin()
+                //        .AllowAnyHeader()
+                //        .AllowAnyHeader());
 
                 options.AddPolicy("Production",
                     builder => builder
@@ -53,14 +62,19 @@ namespace Interface.Configurations
 
             services.AddSwaggerConfig();
 
-            services.AddLoggingConfig();
+            services.AddJwtBearerConfig(configuration);
+
+            //services.AddLoggingConfig();
 
 
             return services;
         }
 
-        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, IConfiguration configuration)
+        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, 
+            IApiVersionDescriptionProvider provider, 
+            IConfiguration configuration)
         {
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -74,7 +88,7 @@ namespace Interface.Configurations
 
             app.UseSwaggerConfig(provider);
 
-            app.UseLoggingConfiguration(configuration);
+            //app.UseLoggingConfiguration(configuration);
 
             return app;
         }

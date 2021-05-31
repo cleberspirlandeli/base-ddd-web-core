@@ -1,12 +1,18 @@
+using Infrastructure.Persistence.Model;
 using Interface.Configurations;
 using Interface.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Prometheus;
+using Prometheus.DotNetRuntime;
 using Service;
+using System;
 
 namespace Interface
 {
@@ -15,9 +21,11 @@ namespace Interface
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Collector = CreateCollector();
         }
 
         public IConfiguration Configuration { get; }
+        public static IDisposable Collector;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -27,7 +35,7 @@ namespace Interface
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             //});
 
-            services.WebApiConfig();
+            services.WebApiConfig(Configuration);
 
             ConfigureBindingsDependencyInjection.RegisterBindings(services, Configuration);
         }
@@ -39,12 +47,38 @@ namespace Interface
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("Development");
+            } else
+            {
+                app.UseHsts();
+                app.UseCors("Production");
             }
+
+            app.UseHttpMetrics();
+            app.UseMetricServer();
+
+            app.UseAuthentication();
 
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseMvcConfiguration(provider, Configuration);
 
+        }
+
+        public static IDisposable CreateCollector()
+        {
+            var builder = DotNetRuntimeStatsBuilder.Default();
+            
+            builder = DotNetRuntimeStatsBuilder.Customize()
+                .WithContentionStats(CaptureLevel.Informational)
+                .WithGcStats(CaptureLevel.Verbose)
+                .WithThreadPoolStats(CaptureLevel.Informational)
+                .WithExceptionStats(CaptureLevel.Errors)
+                .WithJitStats();
+
+            //builder.RecycleCollectorsEvery(new TimeSpan(0, 20, 0));
+
+            return builder.StartCollecting();
         }
     }
 }

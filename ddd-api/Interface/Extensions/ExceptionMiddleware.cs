@@ -37,7 +37,7 @@ namespace Interface.Extensions
             
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var message = "Ops, ocorreu um erro inesperado. Tente novamente mais tarde! Erro ${Erro.Id}";
+            var message = "Ops, ocorreu um erro inesperado. Tente novamente mais tarde! Erro ${Erro.Id} - " + ex.Message;
 
             var result = JsonConvert.SerializeObject(new { success = false, errors = message });
             httpContext.Response.ContentType = "application/json";
