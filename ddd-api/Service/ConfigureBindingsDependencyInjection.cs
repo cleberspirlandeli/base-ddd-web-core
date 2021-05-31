@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Service.Configs;
 using Service.DependencyInjection.ApplicationServiceInjection;
 using Service.DependencyInjection.RepositoryInjection;
 using Service.DependencyInjection.UnitOfWorkInjection;
@@ -16,6 +18,8 @@ namespace Service
 
             #region Others
             services.AddScoped<INotificador, Notificador>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, AspNetUser>();
             #endregion
 
 

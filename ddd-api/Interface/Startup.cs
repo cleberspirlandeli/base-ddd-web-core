@@ -1,8 +1,11 @@
+using Infrastructure.Persistence.Model;
 using Interface.Configurations;
 using Interface.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,7 +35,7 @@ namespace Interface
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             //});
 
-            services.WebApiConfig();
+            services.WebApiConfig(Configuration);
 
             ConfigureBindingsDependencyInjection.RegisterBindings(services, Configuration);
         }
@@ -44,10 +47,17 @@ namespace Interface
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("Development");
+            } else
+            {
+                app.UseHsts();
+                app.UseCors("Production");
             }
 
             app.UseHttpMetrics();
             app.UseMetricServer();
+
+            app.UseAuthentication();
 
             app.UseMiddleware<ExceptionMiddleware>();
 

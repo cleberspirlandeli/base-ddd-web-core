@@ -10,7 +10,8 @@ namespace Interface.Configurations
 {
     public static class ApiConfig
     {
-        public static IServiceCollection WebApiConfig(this IServiceCollection services)
+        public static IServiceCollection WebApiConfig(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddAutoMapper(typeof(Startup));
 
@@ -34,7 +35,6 @@ namespace Interface.Configurations
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-
             services.AddCors(options =>
             {
                 options.AddPolicy("Development",
@@ -44,23 +44,25 @@ namespace Interface.Configurations
                         .AllowAnyHeader()
                         .AllowAnyHeader());
 
-                options.AddPolicy("Production",
-                    builder => builder
-                        .AllowAnyMethod()
-                        .AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyHeader());
-
                 //options.AddPolicy("Production",
                 //    builder => builder
-                //        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                //        .WithOrigins("https://meusistema.com.br", "https://meuoutrosistema.com.br")
+                //        .AllowAnyMethod()
+                //        .AllowAnyOrigin()
+                //        .AllowAnyHeader()
                 //        .AllowAnyHeader());
+
+                options.AddPolicy("Production",
+                    builder => builder
+                        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .WithOrigins("https://meusistema.com.br", "https://meuoutrosistema.com.br")
+                        .AllowAnyHeader());
             });
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             services.AddSwaggerConfig();
+
+            services.AddJwtBearerConfig(configuration);
 
             //services.AddLoggingConfig();
 
@@ -68,17 +70,16 @@ namespace Interface.Configurations
             return services;
         }
 
-        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, IConfiguration configuration)
+        public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app, 
+            IApiVersionDescriptionProvider provider, 
+            IConfiguration configuration)
         {
-            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

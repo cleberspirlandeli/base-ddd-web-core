@@ -1,4 +1,5 @@
-﻿using Infrastructure.Persistence.Model;
+﻿
+using Infrastructure.Persistence.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,17 +11,15 @@ namespace Service
     {
         public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
         {
-            
             // Identity
             services.AddDbContext<DefaultIdentityDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentityCore<IdentityUser>()
+            services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<DefaultIdentityDbContext>()
-                .AddErrorDescriber<IdentityMesagePortuguese>();
-                //.AddDefaultTokenProviders();
-
+                .AddErrorDescriber<IdentityMesagePortuguese>()
+                .AddDefaultTokenProviders();
 
             // DataBase
             services
