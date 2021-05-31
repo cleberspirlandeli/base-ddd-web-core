@@ -22,7 +22,7 @@ Objetivo:
 - Erros gerados serão incluidos em uma lista ao em vez de gerar um `New Error` - (Exception Patterns)
 - Documentação da API utilizando `Swagger`
 - Utilizar AutoMapper
-- Validação de regras de negocio com FluentValidation
+- Validação de regras de negocio, classes e DTO's com FluentValidation
 - Autenticação com `JWT`
 - Implementar `ASP.NET Identity` com permissões de acesso com `Claims` e `Roles`
 - Captação de informações para monitoramento da API utilizando `Prometheus`
