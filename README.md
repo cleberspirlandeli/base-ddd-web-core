@@ -19,7 +19,7 @@ Objetivo:
 - Criar uma estrutura base, separando responsabilidades com fundamentos no design DDD.
 - Realizar versionamento de `endpoints`
 - Retorno padronizado e inclusive erros
-- Erros gerados serão incluidos em uma lista ao em vez de gerar um `New Error`
+- Erros gerados serão incluidos em uma lista ao em vez de gerar um `New Error` - (Exception Patterns)
 - Documentação da API utilizando `Swagger`
 - Utilizar AutoMapper
 - Validação de regras de negocio com FluentValidation
