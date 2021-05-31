@@ -16,7 +16,7 @@ Fonte: [`Eduardo Pires`](https://www.eduardopires.net.br/2016/08/ddd-nao-e-arqui
 <br/>
 
 Objetivo:
-- Criar uma estrutura base, separando responsabilidades com base no design DDD.
+- Criar uma estrutura base, separando responsabilidades com fundamentos no design DDD.
 - Realizar versionamento de `endpoints`
 - Retorno padronizado e inclusive erros
 - Erros gerados serão incluidos em uma lista ao em vez de gerar um `New Error`
