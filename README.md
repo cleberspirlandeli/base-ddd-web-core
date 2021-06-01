@@ -26,7 +26,7 @@ Objetivo:
 - Autenticação com `JWT`
 - Implementar `ASP.NET Identity` com permissões de acesso com `Claims` e `Roles`
 - Captação de informações para monitoramento da API utilizando `Prometheus`
-- TODO - Conversão de 3.1 para 5.x
+- Conversão de 3.1 para 5.x
 - TODO - Implementar Testes automatizados
 - TODO - Integração com outra API utilizando HTTP
 - TODO - Integração com outra API utilizando RabittMQ
