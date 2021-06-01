@@ -27,6 +27,7 @@ Objetivo:
 - Implementar `ASP.NET Identity` com permissões de acesso com `Claims` e `Roles`
 - Captação de informações para monitoramento da API utilizando `Prometheus`
 - Conversão de 3.1 para 5.x
+- TODO - Implementar Interfaces (record .NET5)
 - TODO - Implementar Testes automatizados
 - TODO - Integração com outra API utilizando HTTP
 - TODO - Integração com outra API utilizando RabittMQ
